@@ -20,7 +20,7 @@ class UserService(
     }
 
     @Transactional(readOnly = true)
-    fun getUser(): List<UserResponse> {
+    fun getUsers(): List<UserResponse> {
         return userRepository.findAll()
             .map { user -> UserResponse(user) }
     }
