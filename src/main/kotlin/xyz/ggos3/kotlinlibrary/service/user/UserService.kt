@@ -7,6 +7,7 @@ import xyz.ggos3.kotlinlibrary.domain.user.UserRepository
 import xyz.ggos3.kotlinlibrary.dto.user.request.UserCreateRequest
 import xyz.ggos3.kotlinlibrary.dto.user.request.UserUpdateRequest
 import xyz.ggos3.kotlinlibrary.dto.user.response.UserResponse
+import xyz.ggos3.kotlinlibrary.util.fail
 
 @Service
 class UserService(
@@ -36,7 +37,7 @@ class UserService(
     @Transactional
     fun deleteUser(name: String) {
         val user = userRepository.findByName(name)
-            ?: throw IllegalArgumentException()
+            ?: fail()
 
         userRepository.delete(user)
     }

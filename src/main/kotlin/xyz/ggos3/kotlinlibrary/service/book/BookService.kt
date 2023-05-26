@@ -9,6 +9,7 @@ import xyz.ggos3.kotlinlibrary.domain.user.loanhistory.UserLoanHistoryRepository
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookLoanRequest
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookRequest
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookReturnRequest
+import xyz.ggos3.kotlinlibrary.util.fail
 
 @Service
 class BookService (
@@ -25,13 +26,13 @@ class BookService (
     @Transactional
     fun loanBook(request: BookLoanRequest) {
         val book = bookRepository.findByName(request.bookName)
-            ?: throw IllegalArgumentException()
+            ?: fail()
 
         val user = userRepository.findByName(request.userName)
-            ?: throw IllegalArgumentException()
+            ?: fail()
 
         userLoanHistoryRepository.findByBookNameAndIsReturn(request.bookName, false)
-            ?: throw IllegalArgumentException("진작에 대출 되어있는 책 입니다.")
+            ?: fail("진작에 대출 되어있는 책입니다.")
 
         user.loanBook(book)
     }
@@ -39,7 +40,7 @@ class BookService (
     @Transactional
     fun returnBook(request: BookReturnRequest) {
         val user = userRepository.findByName(request.userName)
-            ?: throw IllegalArgumentException()
+            ?: fail()
 
         user.returnBook(request.bookName)
     }
