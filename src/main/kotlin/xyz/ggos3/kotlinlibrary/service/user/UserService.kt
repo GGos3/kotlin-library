@@ -15,6 +15,7 @@ class UserService(
     @Transactional
     fun saveUser(request: UserCreateRequest) {
         val user = User(request.name, request.age)
+
         userRepository.save(user)
     }
 
@@ -28,6 +29,7 @@ class UserService(
     fun updateUserName(request: UserUpdateRequest) {
         val user = userRepository.findById(request.id)
             .orElseThrow(::IllegalArgumentException)
+
         user.updateName(request.name)
     }
 
@@ -35,6 +37,7 @@ class UserService(
     fun deleteUser(name: String) {
         val user = userRepository.findByName(name)
             ?: throw IllegalArgumentException()
+
         userRepository.delete(user)
     }
 }
