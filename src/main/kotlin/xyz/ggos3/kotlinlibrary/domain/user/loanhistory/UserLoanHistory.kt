@@ -12,7 +12,7 @@ class UserLoanHistory(
     @ManyToOne
     val user: User,
     val bookName: String,
-    var isReturn: Boolean = false,
+    var isReturn: Boolean,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
