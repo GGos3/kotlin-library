@@ -1,6 +1,7 @@
 package xyz.ggos3.kotlinlibrary.domain.user
 
 import jakarta.persistence.CascadeType
+import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
@@ -8,6 +9,7 @@ import jakarta.persistence.OneToMany
 import xyz.ggos3.kotlinlibrary.domain.book.Book
 import xyz.ggos3.kotlinlibrary.domain.user.loanhistory.UserLoanHistory
 
+@Entity
 class User (
     var name: String,
     val age: Int?,
