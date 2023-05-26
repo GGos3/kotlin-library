@@ -31,8 +31,8 @@ class BookService (
         val user = userRepository.findByName(request.userName)
             ?: fail()
 
-        userLoanHistoryRepository.findByBookNameAndIsReturn(request.bookName, false)
-            ?: fail("진작에 대출 되어있는 책입니다.")
+        if (userLoanHistoryRepository.findByBookNameAndIsReturn(request.bookName, false) != null)
+            throw IllegalArgumentException("이미 대출 되어있는 책입니다.")
 
         user.loanBook(book)
     }
