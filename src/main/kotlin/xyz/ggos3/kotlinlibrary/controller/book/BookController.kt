@@ -4,12 +4,13 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RestController
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookLoanRequest
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookRequest
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookReturnRequest
 import xyz.ggos3.kotlinlibrary.service.book.BookService
 
-@Controller
+@RestController
 class BookController (
     private val bookService: BookService
 ) {

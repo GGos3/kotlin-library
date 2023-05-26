@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RestController
 import xyz.ggos3.kotlinlibrary.domain.user.User
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookRequest
 import xyz.ggos3.kotlinlibrary.dto.user.request.UserCreateRequest
@@ -13,27 +14,27 @@ import xyz.ggos3.kotlinlibrary.dto.user.request.UserUpdateRequest
 import xyz.ggos3.kotlinlibrary.dto.user.response.UserResponse
 import xyz.ggos3.kotlinlibrary.service.user.UserService
 
-@Controller
+@RestController
 class UserController (
     private val userService: UserService
 ) {
 
-    @PostMapping
+    @PostMapping("/user")
     fun saveUser(@RequestBody request: UserCreateRequest) {
         userService.saveUser(request)
     }
 
-    @GetMapping
+    @GetMapping("/user")
     fun getUsers(): List<UserResponse> {
         return userService.getUsers()
     }
 
-    @PutMapping
+    @PutMapping("/user")
     fun updateUser(@RequestBody request: UserUpdateRequest) {
         userService.updateUserName(request)
     }
 
-    @DeleteMapping
+    @DeleteMapping("/user")
     fun deleteUser(name: String) {
         userService.deleteUser(name)
     }
