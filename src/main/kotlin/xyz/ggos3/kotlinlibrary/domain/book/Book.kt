@@ -1,15 +1,18 @@
 package xyz.ggos3.kotlinlibrary.domain.book
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 @Entity
 class Book (
     val name: String,
 
-    val type: String,
+    /**
+     * 기존에는 DB Type에 0, 1, 2 와 같이 값이 저장되었지만( Enum의 순서가 바뀌면 위험함 ),
+     * @Enumerated 어노테이션을 이용해 Enum의 값 자체를 저장할 수 있다.
+     */
+
+    @Enumerated(EnumType.STRING)
+    val type: BookType,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +31,7 @@ class Book (
         ): Book {
             return Book(
                 name = name,
-                type = type,
+                type = BookType.COMPUTER,
                 id = id
             )
         }
