@@ -6,6 +6,7 @@ import xyz.ggos3.kotlinlibrary.domain.book.Book
 import xyz.ggos3.kotlinlibrary.domain.book.BookRepository
 import xyz.ggos3.kotlinlibrary.domain.user.UserRepository
 import xyz.ggos3.kotlinlibrary.domain.user.loanhistory.UserLoanHistoryRepository
+import xyz.ggos3.kotlinlibrary.domain.user.loanhistory.UserLoanStatus
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookLoanRequest
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookRequest
 import xyz.ggos3.kotlinlibrary.dto.book.request.BookReturnRequest
@@ -31,8 +32,8 @@ class BookService (
         val user = userRepository.findByName(request.userName)
             ?: fail()
 
-        if (userLoanHistoryRepository.findByBookNameAndIsReturn(request.bookName, false) != null)
-            throw IllegalArgumentException("이미 대출 되어있는 책입니다.")
+        if (userLoanHistoryRepository.findByBookNameAndStatus(request.bookName, UserLoanStatus.LOANED) != null)
+            throw IllegalArgumentException("이미 대출되어 있는 책입니다.")
 
         user.loanBook(book)
     }
