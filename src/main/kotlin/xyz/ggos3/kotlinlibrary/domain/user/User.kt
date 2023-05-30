@@ -8,6 +8,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.OneToMany
 import xyz.ggos3.kotlinlibrary.domain.book.Book
 import xyz.ggos3.kotlinlibrary.domain.user.loanhistory.UserLoanHistory
+import xyz.ggos3.kotlinlibrary.util.fail
 
 @Entity
 class User (
@@ -23,7 +24,7 @@ class User (
 ) {
     init {
         if (name.isBlank())
-            throw IllegalArgumentException("이름은 비어있을 수 없습니다.")
+            fail("이름은 비어있을 수 없습니다.")
     }
 
     fun loanBook(book: Book) {

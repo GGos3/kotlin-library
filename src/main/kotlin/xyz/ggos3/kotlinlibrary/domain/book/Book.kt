@@ -1,6 +1,7 @@
 package xyz.ggos3.kotlinlibrary.domain.book
 
 import jakarta.persistence.*
+import xyz.ggos3.kotlinlibrary.util.fail
 
 @Entity
 class Book (
@@ -20,7 +21,7 @@ class Book (
 ) {
     init {
         if (name.isBlank())
-            throw IllegalArgumentException("이름은 비어 있을 수 없습니다.")
+            fail("이름은 비어있을 수 없습니다.")
     }
 
     companion object {
