@@ -33,7 +33,7 @@ class BookService (
             ?: fail()
 
         if (userLoanHistoryRepository.findByBookNameAndStatus(request.bookName, UserLoanStatus.LOANED) != null)
-            throw IllegalArgumentException("이미 대출되어 있는 책입니다.")
+            fail("이미 대출되어 있는 책입니다.")
 
         user.loanBook(book)
     }
