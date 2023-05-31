@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import xyz.ggos3.kotlinlibrary.domain.user.User
-import xyz.ggos3.kotlinlibrary.dto.book.request.BookRequest
 import xyz.ggos3.kotlinlibrary.dto.user.request.UserCreateRequest
 import xyz.ggos3.kotlinlibrary.dto.user.request.UserUpdateRequest
+import xyz.ggos3.kotlinlibrary.dto.user.response.UserLoanHistoryResponse
 import xyz.ggos3.kotlinlibrary.dto.user.response.UserResponse
 import xyz.ggos3.kotlinlibrary.service.user.UserService
 
@@ -39,5 +38,9 @@ class UserController (
         userService.deleteUser(name)
     }
 
+    @GetMapping("/user/loan")
+    fun getUserLoanHistories(): List<UserLoanHistoryResponse> {
+        return userService.getUserLoanHistories()
+    }
 
 }
